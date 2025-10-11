@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<<<<<<< HEAD
   <meta charset="UTF-8">
   <title>Resume Data Form</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -103,9 +102,8 @@
       color: #000;
     }
     .required {
-      color: #000;
-      background: #000;
       color: #fff;
+      background: #ff0000;
       padding: 2px 6px;
       border-radius: 3px;
       font-size: 0.7rem;
@@ -146,6 +144,11 @@
     .grid-3 {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
       gap: 10px;
     }
     .section-header {
@@ -207,13 +210,34 @@
       z-index: 1;
     }
     .note {
-      background: #f5f5f5;
-      border-left: 4px solid #000;
+      background: #fff3cd;
+      border-left: 4px solid #ff0000;
       padding: 15px;
       margin-bottom: 25px;
-      font-size: 0.9rem;
-      line-height: 1.5;
-      font-style: italic;
+      font-size: 0.95rem;
+      line-height: 1.6;
+      font-weight: 600;
+      color: #000;
+    }
+    .file-upload {
+      border: 2px dashed #000;
+      padding: 20px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.3s;
+      background: #f9f9f9;
+    }
+    .file-upload:hover {
+      background: #000;
+      color: #fff;
+    }
+    .file-upload input {
+      display: none;
+    }
+    .file-label {
+      cursor: pointer;
+      font-weight: 600;
+      display: block;
     }
     @media (max-width: 768px) {
       body {
@@ -225,10 +249,7 @@
       .form-content {
         padding: 20px;
       }
-      .grid-2 {
-        grid-template-columns: 1fr;
-      }
-      .grid-3 {
+      .grid-2, .grid-3, .grid-4 {
         grid-template-columns: 1fr;
       }
       h2 {
@@ -249,14 +270,14 @@
 
     <div class="form-content">
       <div class="note">
-        Leave any field blank if uncertain. Our team will collect necessary information during consultation.
+        ⚠️ NOTE: All fields are mandatory. If certain information is not available, please enter “NO ANSWER”. Our admin team will review your submission and assist you accordingly.
       </div>
 
       <form id="resumeForm">
         <!-- Essential Information -->
         <div class="field-group">
-          <label for="name">Full Name <span class="required">Required</span></label>
-          <input type="text" id="name" required placeholder="Enter your complete name">
+          <label for="name">Full Name (in English) <span class="required">Required</span></label>
+          <input type="text" id="name" required placeholder="Enter your complete name in English">
         </div>
 
         <div class="grid-2">
@@ -266,8 +287,8 @@
           </div>
 
           <div class="field-group">
-            <label for="email">Email Address</label>
-            <input type="email" id="email" placeholder="your.email@example.com">
+            <label for="email">Email Address <span class="required">Required</span></label>
+            <input type="email" id="email" required placeholder="your.email@example.com">
           </div>
         </div>
 
@@ -276,13 +297,13 @@
 
         <div class="grid-2">
           <div class="field-group">
-            <label for="dob">Date of Birth</label>
-            <input type="date" id="dob">
+            <label for="dob">Date of Birth <span class="required">Required</span></label>
+            <input type="date" id="dob" required>
           </div>
 
           <div class="field-group">
-            <label for="gender">Gender</label>
-            <select id="gender">
+            <label for="gender">Gender <span class="required">Required</span></label>
+            <select id="gender" required>
               <option value="">Select Gender</option>
               <option>Male</option>
               <option>Female</option>
@@ -293,13 +314,13 @@
 
         <div class="grid-2">
           <div class="field-group">
-            <label for="blood">Blood Group</label>
-            <input type="text" id="blood" placeholder="e.g., O+, A+, B+">
+            <label for="blood">Blood Group <span class="required">Required</span></label>
+            <input type="text" id="blood" required placeholder="e.g., O+, A+, B+ or NO ANSWER">
           </div>
 
           <div class="field-group">
-            <label for="marital">Marital Status</label>
-            <select id="marital">
+            <label for="marital">Marital Status <span class="required">Required</span></label>
+            <select id="marital" required>
               <option value="">Select Status</option>
               <option>Single</option>
               <option>Married</option>
@@ -309,92 +330,186 @@
 
         <div class="grid-2">
           <div class="field-group">
-            <label for="nationality">Nationality</label>
-            <input type="text" id="nationality" placeholder="e.g., Indian">
+            <label for="nationality">Nationality <span class="required">Required</span></label>
+            <input type="text" id="nationality" required placeholder="e.g., Indian">
           </div>
 
           <div class="field-group">
-            <label for="language">Languages Known</label>
-            <input type="text" id="language" placeholder="e.g., Hindi, English">
+            <label for="language">Languages Known <span class="required">Required</span></label>
+            <input type="text" id="language" required placeholder="e.g., Hindi, English">
           </div>
         </div>
 
         <div class="field-group">
-          <label for="address">Complete Address</label>
-          <textarea id="address" rows="2" placeholder="Enter your full residential address"></textarea>
+          <label for="address">Complete Address <span class="required">Required</span></label>
+          <textarea id="address" required rows="2" placeholder="Enter your full residential address in English"></textarea>
         </div>
 
         <!-- Family Background -->
         <div class="section-header">Family Background</div>
 
         <div class="field-group">
-          <label for="father">Father's Name</label>
-          <input type="text" id="father" placeholder="Enter father's full name">
+          <label for="father">Father's Name <span class="required">Required</span></label>
+          <input type="text" id="father" required placeholder="Enter father's full name in English">
         </div>
 
         <div class="field-group">
-          <label for="mother">Mother's Name</label>
-          <input type="text" id="mother" placeholder="Enter mother's full name">
+          <label for="mother">Mother's Name <span class="required">Required</span></label>
+          <input type="text" id="mother" required placeholder="Enter mother's full name in English">
         </div>
 
         <div class="field-group">
-          <label for="foccupation">Father's Occupation</label>
-          <input type="text" id="foccupation" placeholder="Enter father's profession">
+          <label for="foccupation">Father's Occupation <span class="required">Required</span></label>
+          <input type="text" id="foccupation" required placeholder="Enter father's profession or NO ANSWER">
         </div>
 
         <!-- Academic Records -->
-        <div class="section-header">Academic Records</div>
+        <div class="section-header">Academic Records - Class 10th</div>
 
-        <div class="field-group">
-          <label for="10class">Class 10th Details</label>
-          <input type="text" id="10class" placeholder="Board, School Name, Year, Percentage">
-        </div>
-
-        <div class="field-group">
-          <label for="12class">Class 12th Details</label>
-          <input type="text" id="12class" placeholder="Board, School Name, Year, Percentage">
-        </div>
-
-        <div class="field-group">
-          <label>College Name with Branch</label>
-          <input type="text" id="diplomainstitute" placeholder="College, Branch/Stream">
-        </div>
-
-        <div class="field-group">
-          <label>Semester-wise SGPA</label>
-          <div class="grid-3">
-            <input type="number" step="0.01" id="sem1sgpa" placeholder="Semester 1">
-            <input type="number" step="0.01" id="sem2sgpa" placeholder="Semester 2">
-            <input type="number" step="0.01" id="sem3sgpa" placeholder="Semester 3">
+        <div class="grid-2">
+          <div class="field-group">
+            <label for="10board">10th Board Name <span class="required">Required</span></label>
+            <input type="text" id="10board" required placeholder="e.g., CBSE, ICSE, State Board">
           </div>
+
+          <div class="field-group">
+            <label for="10school">10th School Name <span class="required">Required</span></label>
+            <input type="text" id="10school" required placeholder="Full school name in English">
+          </div>
+        </div>
+
+        <div class="grid-2">
+          <div class="field-group">
+            <label for="10year">10th Passing Year <span class="required">Required</span></label>
+            <input type="number" id="10year" required placeholder="e.g., 2019">
+          </div>
+
+          <div class="field-group">
+            <label for="10percentage">10th Percentage <span class="required">Required</span></label>
+            <input type="number" step="0.01" id="10percentage" required placeholder="e.g., 85.5">
+          </div>
+        </div>
+
+        <!-- Class 12th -->
+        <div class="section-header">Academic Records - Class 12th (Optional)</div>
+
+        <div class="grid-2">
+          <div class="field-group">
+            <label for="12board">12th Board Name</label>
+            <input type="text" id="12board" placeholder="e.g., CBSE, ICSE, State Board or NO ANSWER">
+          </div>
+
+          <div class="field-group">
+            <label for="12school">12th School Name</label>
+            <input type="text" id="12school" placeholder="Full school name in English or NO ANSWER">
+          </div>
+        </div>
+
+        <div class="grid-2">
+          <div class="field-group">
+            <label for="12year">12th Passing Year</label>
+            <input type="text" id="12year" placeholder="e.g., 2021 or NO ANSWER">
+          </div>
+
+          <div class="field-group">
+            <label for="12percentage">12th Percentage</label>
+            <input type="text" id="12percentage" placeholder="e.g., 75.8 or NO ANSWER">
+          </div>
+        </div>
+
+        <!-- College Details -->
+        <div class="section-header">College Education</div>
+
+        <div class="field-group">
+          <label for="collegename">College/Institute Name <span class="required">Required</span></label>
+          <input type="text" id="collegename" required placeholder="Full college name in English">
+        </div>
+
+        <div class="field-group">
+          <label for="branch">Branch/Stream <span class="required">Required</span></label>
+          <input type="text" id="branch" required placeholder="e.g., Mechanical Engineering, Civil Engineering">
+        </div>
+
+        <div class="field-group">
+          <label>Semester-wise SGPA (Optional)</label>
+          <div class="grid-3">
+            <input type="text" id="sem1sgpa" placeholder="Semester 1 or NO ANSWER">
+            <input type="text" id="sem2sgpa" placeholder="Semester 2 or NO ANSWER">
+            <input type="text" id="sem3sgpa" placeholder="Semester 3 or NO ANSWER">
+          </div>
+        </div>
+
+        <!-- Training Details -->
+        <div class="section-header">Training Details</div>
+
+        <div class="field-group">
+          <label for="trainingorg">Training Organization Name <span class="required">Required</span></label>
+          <input type="text" id="trainingorg" required placeholder="Name of organization/institute or NO ANSWER">
+        </div>
+
+        <div class="field-group">
+          <label for="trainingcourse">Training Course Name <span class="required">Required</span></label>
+          <input type="text" id="trainingcourse" required placeholder="Name of course or NO ANSWER">
+        </div>
+
+        <div class="field-group">
+          <label for="trainingduration">Training Duration <span class="required">Required</span></label>
+          <input type="text" id="trainingduration" required placeholder="e.g., 6 months, 1 year or NO ANSWER">
+        </div>
+
+        <!-- Internship Details -->
+        <div class="section-header">Internship Experience</div>
+
+        <div class="field-group">
+          <label for="internshiporg">Internship Organization <span class="required">Required</span></label>
+          <input type="text" id="internshiporg" required placeholder="Company/organization name or NO ANSWER">
+        </div>
+
+        <div class="field-group">
+          <label for="internshiptopics">Topics/Skills Learned in Internship <span class="required">Required</span></label>
+          <textarea id="internshiptopics" required placeholder="e.g., AutoCAD, Project Management, Quality Control, Site Supervision, Safety Protocols or NO ANSWER"></textarea>
         </div>
 
         <!-- Professional Skills -->
         <div class="section-header">Professional Skills</div>
 
         <div class="field-group">
-          <label for="training">Technical Training</label>
-          <textarea id="training" placeholder="Organization, Course Name, Duration"></textarea>
+          <label for="skills">Soft Skills <span class="required">Required</span></label>
+          <textarea id="skills" required placeholder="Communication, Leadership, Teamwork, Time Management"></textarea>
         </div>
 
         <div class="field-group">
-          <label for="skills">Soft Skills</label>
-          <textarea id="skills" placeholder="Communication, Leadership, Teamwork, etc."></textarea>
+          <label for="hobbies">Hobbies & Interests <span class="required">Required</span></label>
+          <textarea id="hobbies" required placeholder="Reading, Sports, Music, etc."></textarea>
         </div>
 
         <div class="field-group">
-          <label for="hobbies">Hobbies & Interests</label>
-          <textarea id="hobbies" placeholder="Reading, Sports, Music, etc."></textarea>
+          <label for="strengths">Key Strengths <span class="required">Required</span></label>
+          <textarea id="strengths" required placeholder="Your core competencies and strengths"></textarea>
         </div>
 
         <div class="field-group">
-          <label for="strengths">Key Strengths</label>
-          <textarea id="strengths" placeholder="Your core competencies and strengths"></textarea>
+          <label for="declaration">Declaration Statement <span class="required">Required</span></label>
+          <textarea id="declaration" required placeholder="I hereby declare that all information provided is true and correct to the best of my knowledge"></textarea>
+        </div>
+
+        <!-- Document Upload -->
+        <div class="section-header">Document Upload</div>
+
+        <div class="field-group">
+          <label>Passport Size Photo <span class="required">Required</span></label>
+          <div class="file-upload" onclick="document.getElementById('photo').click()">
+            <label class="file-label" id="photoLabel">Click to upload passport size photo</label>
+            <input type="file" id="photo" accept="image/*" required onchange="updateFileName('photo', 'photoLabel')">
+          </div>
         </div>
 
         <div class="field-group">
-          <label for="declaration">Declaration Statement</label>
-          <textarea id="declaration" placeholder="I hereby declare that all information provided is true..."></textarea>
+          <label>Signature <span class="required">Required</span></label>
+          <div class="file-upload" onclick="document.getElementById('signature').click()">
+            <label class="file-label" id="signatureLabel">Click to upload signature image</label>
+            <input type="file" id="signature" accept="image/*" required onchange="updateFileName('signature', 'signatureLabel')">
+          </div>
         </div>
 
         <input type="submit" value="Send to WhatsApp ➜">
@@ -403,94 +518,156 @@
   </div>
 
   <script>
+    function updateFileName(inputId, labelId) {
+      const input = document.getElementById(inputId);
+      const label = document.getElementById(labelId);
+      if (input.files.length > 0) {
+        label.textContent = '✓ ' + input.files[0].name;
+      }
+    }
+
     document.getElementById('resumeForm').addEventListener('submit', function(e) {
       e.preventDefault();
 
       var data = {
         name: document.getElementById('name').value,
         phone: document.getElementById('phone').value,
+        email: document.getElementById('email').value,
         dob: document.getElementById('dob').value,
         gender: document.getElementById('gender').value,
+        blood: document.getElementById('blood').value,
+        marital: document.getElementById('marital').value,
+        nationality: document.getElementById('nationality').value,
+        language: document.getElementById('language').value,
+        address: document.getElementById('address').value,
         father: document.getElementById('father').value,
         mother: document.getElementById('mother').value,
         foccupation: document.getElementById('foccupation').value,
-        address: document.getElementById('address').value,
-        email: document.getElementById('email').value,
-        blood: document.getElementById('blood').value,
-        marital: document.getElementById('marital').value,
-        language: document.getElementById('language').value,
-        nationality: document.getElementById('nationality').value,
-        tenth: document.getElementById('10class').value,
-        twelfth: document.getElementById('12class').value,
-        diplomainstitute: document.getElementById('diplomainstitute').value,
-        sgpa: [],
-        training: document.getElementById('training').value,
-        hobbies: document.getElementById('hobbies').value,
+        
+        // 10th Details
+        board10: document.getElementById('10board').value,
+        school10: document.getElementById('10school').value,
+        year10: document.getElementById('10year').value,
+        percentage10: document.getElementById('10percentage').value,
+        
+        // 12th Details
+        board12: document.getElementById('12board').value,
+        school12: document.getElementById('12school').value,
+        year12: document.getElementById('12year').value,
+        percentage12: document.getElementById('12percentage').value,
+        
+        // College
+        collegename: document.getElementById('collegename').value,
+        branch: document.getElementById('branch').value,
+        
+        // Training
+        trainingorg: document.getElementById('trainingorg').value,
+        trainingcourse: document.getElementById('trainingcourse').value,
+        trainingduration: document.getElementById('trainingduration').value,
+        
+        // Internship
+        internshiporg: document.getElementById('internshiporg').value,
+        internshiptopics: document.getElementById('internshiptopics').value,
+        
+        // Skills
         skills: document.getElementById('skills').value,
+        hobbies: document.getElementById('hobbies').value,
         strengths: document.getElementById('strengths').value,
-        declaration: document.getElementById('declaration').value
+        declaration: document.getElementById('declaration').value,
+        
+        sgpa: []
       };
 
+      // SGPA Collection
       for(let i=1; i<=3; i++){
         var val = document.getElementById(`sem${i}sgpa`).value;
-        if(val) data.sgpa.push(`Sem ${i}: ${val}`);
+        if(val && val !== '' && val.toLowerCase() !== 'no answer') {
+          data.sgpa.push(`Sem ${i}: ${val}`);
+        }
       }
 
       var whatsappNumber = "919153950552";
 
       var messageParts = [];
-      messageParts.push(`━━━━━━━━━━━━━━━━━━━━`);
+      messageParts.push(`━━━━━━━━━━━━━━━━━━━━━━━━━`);
       messageParts.push(`📋 *RESUME DATA SUBMISSION*`);
-      messageParts.push(`━━━━━━━━━━━━━━━━━━━━`);
+      messageParts.push(`━━━━━━━━━━━━━━━━━━━━━━━━━`);
       
       messageParts.push(`\n*PERSONAL INFORMATION*`);
-      if(data.name) messageParts.push(`• Name: ${data.name}`);
-      if(data.phone) messageParts.push(`• Phone: ${data.phone}`);
-      if(data.email) messageParts.push(`• Email: ${data.email}`);
-      if(data.dob) messageParts.push(`• DOB: ${data.dob}`);
-      if(data.gender) messageParts.push(`• Gender: ${data.gender}`);
-      if(data.blood) messageParts.push(`• Blood Group: ${data.blood}`);
-      if(data.marital) messageParts.push(`• Marital Status: ${data.marital}`);
-      if(data.nationality) messageParts.push(`• Nationality: ${data.nationality}`);
-      if(data.language) messageParts.push(`• Languages: ${data.language}`);
-      if(data.address) messageParts.push(`• Address: ${data.address}`);
+      messageParts.push(`• Name: ${data.name}`);
+      messageParts.push(`• Phone: ${data.phone}`);
+      messageParts.push(`• Email: ${data.email}`);
+      messageParts.push(`• DOB: ${data.dob}`);
+      messageParts.push(`• Gender: ${data.gender}`);
+      messageParts.push(`• Blood Group: ${data.blood}`);
+      messageParts.push(`• Marital Status: ${data.marital}`);
+      messageParts.push(`• Nationality: ${data.nationality}`);
+      messageParts.push(`• Languages: ${data.language}`);
+      messageParts.push(`• Address: ${data.address}`);
       
       messageParts.push(`\n*FAMILY BACKGROUND*`);
-      if(data.father) messageParts.push(`• Father: ${data.father}`);
-      if(data.mother) messageParts.push(`• Mother: ${data.mother}`);
-      if(data.foccupation) messageParts.push(`• Father's Occupation: ${data.foccupation}`);
+      messageParts.push(`• Father: ${data.father}`);
+      messageParts.push(`• Mother: ${data.mother}`);
+      messageParts.push(`• Father's Occupation: ${data.foccupation}`);
       
-      messageParts.push(`\n*ACADEMIC RECORDS*`);
-      if(data.tenth) messageParts.push(`• 10th: ${data.tenth}`);
-      if(data.twelfth) messageParts.push(`• 12th: ${data.twelfth}`);
-      if(data.diplomainstitute) messageParts.push(`• College: ${data.diplomainstitute}`);
+      messageParts.push(`\n*ACADEMIC - CLASS 10th*`);
+      messageParts.push(`• Board: ${data.board10}`);
+      messageParts.push(`• School: ${data.school10}`);
+      messageParts.push(`• Year: ${data.year10}`);
+      messageParts.push(`• Percentage: ${data.percentage10}%`);
+      
+      messageParts.push(`\n*ACADEMIC - CLASS 12th*`);
+      if(data.board12 && data.board12.toLowerCase() !== 'no answer') {
+        messageParts.push(`• Board: ${data.board12}`);
+      }
+      if(data.school12 && data.school12.toLowerCase() !== 'no answer') {
+        messageParts.push(`• School: ${data.school12}`);
+      }
+      if(data.year12 && data.year12.toLowerCase() !== 'no answer') {
+        messageParts.push(`• Year: ${data.year12}`);
+      }
+      if(data.percentage12 && data.percentage12.toLowerCase() !== 'no answer') {
+        messageParts.push(`• Percentage: ${data.percentage12}%`);
+      }
+      if(!data.board12 || data.board12.toLowerCase() === 'no answer') {
+        messageParts.push(`• Not Applicable (Diploma Student)`);
+      }
+      
+      messageParts.push(`\n*COLLEGE EDUCATION*`);
+      messageParts.push(`• College: ${data.collegename}`);
+      messageParts.push(`• Branch: ${data.branch}`);
       if(data.sgpa.length > 0) {
         messageParts.push(`• SGPA: ${data.sgpa.join(', ')}`);
       }
       
+      messageParts.push(`\n*TRAINING DETAILS*`);
+      messageParts.push(`• Organization: ${data.trainingorg}`);
+      messageParts.push(`• Course: ${data.trainingcourse}`);
+      messageParts.push(`• Duration: ${data.trainingduration}`);
+      
+      messageParts.push(`\n*INTERNSHIP EXPERIENCE*`);
+      messageParts.push(`• Organization: ${data.internshiporg}`);
+      messageParts.push(`• Topics/Skills: ${data.internshiptopics}`);
+      
       messageParts.push(`\n*PROFESSIONAL SKILLS*`);
-      if(data.training) messageParts.push(`• Training: ${data.training}`);
-      if(data.skills) messageParts.push(`• Soft Skills: ${data.skills}`);
-      if(data.hobbies) messageParts.push(`• Hobbies: ${data.hobbies}`);
-      if(data.strengths) messageParts.push(`• Strengths: ${data.strengths}`);
-      if(data.declaration) messageParts.push(`• Declaration: ${data.declaration}`);
+      messageParts.push(`• Soft Skills: ${data.skills}`);
+      messageParts.push(`• Hobbies: ${data.hobbies}`);
+      messageParts.push(`• Strengths: ${data.strengths}`);
+      
+      messageParts.push(`\n*DECLARATION*`);
+      messageParts.push(`${data.declaration}`);
 
-      messageParts.push(`\n━━━━━━━━━━━━━━━━━━━━`);
+      messageParts.push(`\n━━━━━━━━━━━━━━━━━━━━━━━━━`);
+      messageParts.push(`📸 *Photo & Signature will be sent separately*`);
+      messageParts.push(`━━━━━━━━━━━━━━━━━━━━━━━━━`);
 
       var message = encodeURIComponent(messageParts.join('\n'));
       var url = `https://wa.me/${whatsappNumber}?text=${message}`;
+      
+      alert('✅ Form submitted successfully!\n\n📸 Please send your Passport Photo and Signature images to WhatsApp after sending this form data.\n\nThank you!');
+      
       window.open(url, '_blank');
     });
   </script>
-=======
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>hellow github bhai</h1>
-    <h2>2nd testing </h2>
-    <h3>last testin so that i am happy</h3>
->>>>>>> 3bd112779649228b7416fe3a7322007390b3a946
 </body>
 </html>
